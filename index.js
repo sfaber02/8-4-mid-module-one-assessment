@@ -26,7 +26,16 @@ const animals = [
  * getTotalCount(animals); //> 28
  * getTotalCount([]); //> 0 // returns 0 if the input array is empty
  */
-function getTotalCount(animals) {}
+function getTotalCount(animals) {
+  /* i know we technically learned the in loop is 
+  for objects but I stumbled on the fact that it will just
+   return the indexes if used on an array. */
+  let animalCount = 0;
+  for (animal in animals){
+    animalCount += animals[animal].count;
+  }
+  return animalCount;
+}
 
 /**
  * FUNCTION DESCRIPTION
@@ -40,7 +49,13 @@ function getTotalCount(animals) {}
  * getAllKinds(animals); //> ["Pig", "Cow", "Chicken", "Horse", "Dog", "Cat"]
  * getAllKinds([]); //> [] // returns empty array if input array is empty
  */
-function getAllKinds(animals) {}
+function getAllKinds(animals) {
+  let species = [];
+  for (let animal in animals){
+    species.push(animals[animal].kind);
+  }
+  return species;
+}
 
 /**
  * FUNCTION DESCRIPTION
@@ -59,7 +74,13 @@ function getAllKinds(animals) {}
   ];
  * filterByCountMinimum([], 3); //> [] // returns empty array if input array is empty
  */
-function filterByCountMinimum(animals, minimum) {}
+function filterByCountMinimum(animals, minimum) {
+  let cullList = []; //sorry that's dark
+  for (let animal in animals){
+    if (animals[animal].count >= minimum) cullList.push(animals[animal]);
+  }
+  return cullList;
+}
 
 /**
  * FUNCTION DESCRIPTION
@@ -73,7 +94,17 @@ function filterByCountMinimum(animals, minimum) {}
  * getMostCommonAnimal(animals); //> { kind: "Chicken", count: 11 }
  * getMostCommonAnimal([]); //> null // returns null if the input is empty
  */
-function getMostCommonAnimal(animals) {}
+function getMostCommonAnimal(animals) {
+  let highestCount = -Infinity; //I guess -1 would work here just as well.
+  let highestIndex = null;
+  for (let animal in animals){
+    if (animals[animal].count > highestCount){
+      highestCount = animals[animal].count;
+      highestIndex = animal;
+    }
+  }
+  return highestIndex == null ? null : animals[highestIndex];
+}
 
 // Do not change anything below this line.
 module.exports = {
